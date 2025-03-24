@@ -8,6 +8,7 @@ use Cspray\ScorchedEarthGitConflictResolver\GitRepositoryFactory;
 use Cspray\ScorchedEarthGitConflictResolver\Test\DryRunScorchedEarthResolverTest;
 use org\bovigo\vfs\vfsStream as VirtualFilesystem;
 use org\bovigo\vfs\vfsStreamDirectory as VirtualDirectory;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -15,6 +16,7 @@ use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 
+#[CoversClass(ResolveCommand::class)]
 class ResolveCommandTest extends TestCase {
 
     private GitRepositoryFactory&MockObject $repositoryFactory;

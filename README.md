@@ -6,6 +6,15 @@ A set of PHP scripts intended to resolve Git conflicts across massive amounts of
 
 These scripts perform potentially destructive operations on a Git repository, including staging changes for the repository. It is absolutely critical that you review this library in its entirety before using. Chances are this library is not appropriate for your use-case, and you should use a better strategy for resolving merge conflicts.
 
+## Requirements
+
+- PHP 8.3
+- ext-mbstring
+- Composer
+- Git
+- A Git conflict too big to be resolved manually
+- A use case where a conflicting file can be entirely rewritten with a "clean" version
+
 ## Installation
 
 Are you sure you really need to use this script? _Really_ sure? _Really, really_ sure?

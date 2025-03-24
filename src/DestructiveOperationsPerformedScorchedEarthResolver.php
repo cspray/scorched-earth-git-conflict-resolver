@@ -21,14 +21,11 @@ final readonly class DestructiveOperationsPerformedScorchedEarthResolver impleme
             if ($conflictingFile->conflictType()->isModified()) {
                 $dirtyPath = $conflictingFile->dirtyPath();
                 $cleanPath = $conflictingFile->cleanPath();
-                file_put_contents($dirtyPath, file_get_contents($cleanPath));
-                $this->gitRepository->add($dirtyPath);
                 $copyOperations[$dirtyPath] = $cleanPath;
                 continue;
             }
 
             if ($conflictingFile->conflictType()->isDeleted()) {
-                $this->gitRepository->remove($conflictingFile->dirtyPath());
                 $removeOperations[$conflictingFile->dirtyPath()] = $conflictingFile->conflictType();
             }
         }
@@ -37,11 +34,14 @@ final readonly class DestructiveOperationsPerformedScorchedEarthResolver impleme
         $this->output->writeln("Found $conflictingFileCount conflicting file.");
         $this->output->writeln('');
         foreach ($copyOperations as $dirtyPath => $cleanPath) {
+            file_put_contents($dirtyPath, file_get_contents($cleanPath));
             $this->output->writeln("COPY $cleanPath TO $dirtyPath");
+            $this->gitRepository->add($dirtyPath);
             $this->output->writeln("GIT ADD $dirtyPath");
         }
 
         foreach ($removeOperations as $dirtyPath => $conflictType) {
+            $this->gitRepository->remove($dirtyPath);
             $this->output->writeln("($conflictType->name) GIT RM $dirtyPath");
         }
 
