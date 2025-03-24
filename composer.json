@@ -1,0 +1,25 @@
+{
+  "name": "cspray/scorched-earth-git-conflict-resolver",
+  "description": "A set of simple scripts intended to resolve git conflicts across massive amounts of file changes. Please review README before using!",
+  "license": "MIT",
+  "require": {
+    "php": "^8.3",
+    "ext-mbstring": "*",
+    "symfony/console": "^7.2"
+  },
+  "require-dev": {
+    "mikey179/vfsstream": "^1.6",
+    "phpunit/phpunit": "^11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cspray\\ScorchedEarthGitConflictResolver\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cspray\\ScorchedEarthGitConflictResolver\\Test\\": "tests"
+    }
+  },
+  "bin": ["bin/scorch-earth"]
+}

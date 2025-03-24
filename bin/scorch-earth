@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use Cspray\ScorchedEarthGitConflictResolver\Command\ResolveCommand;
+use Cspray\ScorchedEarthGitConflictResolver\ExecBackedGitRepositoryFactory;
+use Symfony\Component\Console\Application;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+$application = new Application('scorched-earth-conflict-resolver', '0.1.0');
+$application->addCommands([
+        new ResolveCommand(new ExecBackedGitRepositoryFactory())
+]);
+$application->run();
